@@ -1,52 +1,45 @@
 {
   "project_info": {
-    "project_number": "1037797592306",
-    "firebase_url": "https://agriculture-7a007.firebaseio.com",
-    "project_id": "agriculture-7a007",
-    "storage_bucket": "agriculture-7a007.appspot.com"
+    "project_number": "741312950149",
+    "firebase_url": "https://etemu-5b2e0.firebaseio.com",
+    "project_id": "etemu-5b2e0",
+    "storage_bucket": "etemu-5b2e0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1037797592306:android:a919666052929067",
+        "mobilesdk_app_id": "1:741312950149:android:90c0791182c8ff0b",
         "android_client_info": {
-          "package_name": "com.fatkhun.agriculture.mvp"
+          "package_name": "com.etemu.pens.mvp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1037797592306-fl3gnf733a344e6m1ed2msrtkcs5uk3u.apps.googleusercontent.com",
+          "client_id": "741312950149-j0e6nmkabpc93hej0n4fn4vdi8kbkcm1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.fatkhun.agriculture.mvp",
+            "package_name": "com.etemu.pens.mvp",
             "certificate_hash": "1fc7c476ea6d98ab22d2a7f6285a3bab9e32d0b7"
           }
         },
         {
-          "client_id": "1037797592306-rauj1i082df1nq2rb6rgt90bqpcpdld5.apps.googleusercontent.com",
+          "client_id": "741312950149-phmu8tgabn1chuh55c917c33kiivta4g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCwTorfNj_l1gBVeLuUQKyb3MPgLCCiK4c"
+          "current_key": "AIzaSyAQOo5Ui-AwNuCNuymtDvVR_Vj-jugeq2w"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1037797592306-rauj1i082df1nq2rb6rgt90bqpcpdld5.apps.googleusercontent.com",
+              "client_id": "741312950149-phmu8tgabn1chuh55c917c33kiivta4g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

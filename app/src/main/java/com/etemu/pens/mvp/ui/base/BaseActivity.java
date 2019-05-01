@@ -38,7 +38,7 @@ import com.etemu.pens.mvp.di.component.ActivityComponent;
 
 import com.etemu.pens.mvp.di.component.DaggerActivityComponent;
 import com.etemu.pens.mvp.di.module.ActivityModule;
-import com.etemu.pens.mvp.ui.login.LoginActivity;
+import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.utils.CommonUtils;
 import com.etemu.pens.mvp.utils.NetworkUtils;
 
@@ -167,7 +167,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void openActivityOnTokenExpire() {
-        startActivity(LoginActivity.getStartIntent(this));
+        startActivity(HomeActivity.getStartIntent(this));
         finish();
     }
 

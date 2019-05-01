@@ -22,14 +22,29 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.etemu.pens.mvp.di.ActivityContext;
 import com.etemu.pens.mvp.di.PerActivity;
+import com.etemu.pens.mvp.ui.claimitem.ClaimItemMvpPresenter;
+import com.etemu.pens.mvp.ui.claimitem.ClaimItemMvpView;
+import com.etemu.pens.mvp.ui.claimitem.ClaimItemPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpView;
 import com.etemu.pens.mvp.ui.home.HomePresenter;
 import com.etemu.pens.mvp.ui.splash.SplashMvpPresenter;
 import com.etemu.pens.mvp.ui.splash.SplashMvpView;
 import com.etemu.pens.mvp.ui.splash.SplashPresenter;
+import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemMvpPresenter;
+import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemMvpView;
+import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemPresenter;
+import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemMvpPresenter;
+import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemMvpView;
+import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemPresenter;
+import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListAdapter;
+import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListMvpPresenter;
+import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListMvpView;
+import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListPresenter;
 import com.etemu.pens.mvp.utils.rx.AppSchedulerProvider;
 import com.etemu.pens.mvp.utils.rx.SchedulerProvider;
+
+import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
@@ -82,6 +97,35 @@ public class ActivityModule {
     @PerActivity
     HomeMvpPresenter<HomeMvpView> provideHomeMvpPresenter(HomePresenter<HomeMvpView> presenter){
         return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    UploadMissingItemMvpPresenter<UploadMissingItemMvpView> provideUploadMissingItemPresenter(UploadMissingItemPresenter<UploadMissingItemMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    UploadFoundedItemMvpPresenter<UploadFoundedItemMvpView> provideUploadFoundedItemPresenter(UploadFoundedItemPresenter<UploadFoundedItemMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    ClaimItemMvpPresenter<ClaimItemMvpView> provideClaimItemPresenter(ClaimItemPresenter<ClaimItemMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    UploadMissingItemListMvpPresenter<UploadMissingItemListMvpView> provideUploadMissingItemListPresenter(UploadMissingItemListPresenter<UploadMissingItemListMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    UploadMissingItemListAdapter provideUploadMissingItemListAdapter(){
+        return new UploadMissingItemListAdapter(new ArrayList<>(), context);
     }
 
     @Provides

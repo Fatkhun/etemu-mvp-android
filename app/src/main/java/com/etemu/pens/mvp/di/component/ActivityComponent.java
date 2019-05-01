@@ -17,9 +17,12 @@ package com.etemu.pens.mvp.di.component;
 
 import com.etemu.pens.mvp.di.PerActivity;
 import com.etemu.pens.mvp.di.module.ActivityModule;
+import com.etemu.pens.mvp.ui.claimitem.ClaimItemActivity;
 import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.ui.splash.SplashActivity;
+import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemActivity;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemActivity;
+import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListActivity;
 
 import dagger.Component;
 
@@ -36,4 +39,10 @@ public interface ActivityComponent {
     void inject(HomeActivity activity);
 
     void inject(UploadMissingItemActivity activity);
+
+    void inject(UploadFoundedItemActivity activity);
+
+    void inject(ClaimItemActivity activity);
+
+    void inject(UploadMissingItemListActivity activity);
 }

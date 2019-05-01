@@ -13,7 +13,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.etemu.pens.mvp.R;
-import com.etemu.pens.mvp.ui.mainnavigation.MainNavigationActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -33,22 +32,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String title=remoteMessage.getNotification().getTitle();
         String body=remoteMessage.getNotification().getBody();
 
-        Intent intent=new Intent(this, MainNavigationActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
-                PendingIntent.FLAG_ONE_SHOT);
-        Bitmap notifyImage = BitmapFactory.decodeResource(getResources(), R.drawable.ic_notifications_black_empty);
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_notifications_black_empty)
-                .setLargeIcon(notifyImage)
-                .setColor(Color.parseColor("#FFE74C3C"))
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notificationBuilder.build());
+//        Intent intent=new Intent(this, MainNavigationActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
+//                PendingIntent.FLAG_ONE_SHOT);
+//        Bitmap notifyImage = BitmapFactory.decodeResource(getResources(), R.drawable.ic_notifications_black_empty);
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+//                .setSmallIcon(R.drawable.ic_notifications_black_empty)
+//                .setLargeIcon(notifyImage)
+//                .setColor(Color.parseColor("#FFE74C3C"))
+//                .setContentTitle(title)
+//                .setContentText(body)
+//                .setAutoCancel(true)
+//                .setSound(defaultSoundUri)
+//                .setContentIntent(pendingIntent);
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(0, notificationBuilder.build());
     }
 }
