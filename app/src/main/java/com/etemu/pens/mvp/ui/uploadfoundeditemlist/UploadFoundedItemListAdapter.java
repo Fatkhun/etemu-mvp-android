@@ -1,8 +1,7 @@
-package com.etemu.pens.mvp.ui.uploudmissingitemlist;
+package com.etemu.pens.mvp.ui.uploadfoundeditemlist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,23 +22,23 @@ import java.util.TimeZone;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class UploadFoundedItemListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_EMPTY = 0;
     public static final int VIEW_TYPE_NORMAL = 1;
 
 
-    UploadMissingItemListAdapter.Callback mCallback;
+    UploadFoundedItemListAdapter.Callback mCallback;
     private List<UploadMissingItem> mData;
     List<UploadMissingItem> mDataDefault;
     private String mType;
     Context context;
 
-    public UploadMissingItemListAdapter(List<UploadMissingItem> dataResponseList, Context context) {
+    public UploadFoundedItemListAdapter(List<UploadMissingItem> dataResponseList, Context context) {
         mData = dataResponseList;
         this.context = context;
     }
 
-    public void setCallback(UploadMissingItemListAdapter.Callback callback) {
+    public void setCallback(UploadFoundedItemListAdapter.Callback callback) {
         mCallback = callback;
     }
 
@@ -53,13 +52,13 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
 
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
-                return new UploadMissingItemListAdapter.ViewHolder(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_upload_missing_view, parent, false));
+                return new UploadFoundedItemListAdapter.ViewHolder(
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_upload_founded_view, parent, false));
             case VIEW_TYPE_EMPTY:
-                return new UploadMissingItemListAdapter.EmptyViewHolder(
+                return new UploadFoundedItemListAdapter.EmptyViewHolder(
                         LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_view, parent, false));
             default:
-                return new UploadMissingItemListAdapter.EmptyViewHolder(
+                return new UploadFoundedItemListAdapter.EmptyViewHolder(
                         LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_view, parent, false));
         }
     }
@@ -101,8 +100,8 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
         public ViewHolder(View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.iv_upload_missing_item_list);
-            tvDesc = itemView.findViewById(R.id.tv_desc_upload_missing_item_list);
+            imageView = itemView.findViewById(R.id.iv_upload_founded_item_list);
+            tvDesc = itemView.findViewById(R.id.tv_desc_upload_founded_item_list);
 
         }
 

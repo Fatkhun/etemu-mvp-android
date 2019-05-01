@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.etemu.pens.mvp.R;
+import com.etemu.pens.mvp.ui.about.AboutActivity;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
 import com.etemu.pens.mvp.ui.splash.SplashActivity;
 import com.etemu.pens.mvp.ui.splash.SplashMvpPresenter;
 import com.etemu.pens.mvp.ui.splash.SplashMvpView;
 import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemActivity;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListActivity;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemActivity;
 import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListActivity;
 
@@ -66,7 +68,12 @@ public class HomeActivity extends BaseActivity implements HomeMvpView {
 
     @OnClick(R.id.cv_upload_founded_item_list)
     void onClickUploadFoundedItemList(View v){
+        startActivity(UploadFoundedItemListActivity.getStartIntent(this));
+    }
 
+    @OnClick(R.id.cv_about)
+    void onClickAbout(View v){
+        startActivity(AboutActivity.getStartIntent(this));
     }
 
     @Override

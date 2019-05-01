@@ -16,22 +16,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.about.AboutActivity"></activity>
+        <activity android:name=".ui.claimfoundeditem.ClaimFoundedItemActivity" />
+        <activity android:name=".ui.uploadfoundeditemlist.UploadFoundedItemListActivity" />
         <activity
             android:name=".ui.uploudmissingitemlist.UploadMissingItemListActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.claimitem.ClaimItemActivity"
+            android:name=".ui.claimmissingitem.ClaimMissingItemActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.uploadfoundeditem.UploadFoundedItemActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.uploadmissingitem.UploadMissingItemActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:launchMode="singleTop"

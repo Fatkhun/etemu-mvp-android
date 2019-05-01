@@ -22,9 +22,15 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.etemu.pens.mvp.di.ActivityContext;
 import com.etemu.pens.mvp.di.PerActivity;
-import com.etemu.pens.mvp.ui.claimitem.ClaimItemMvpPresenter;
-import com.etemu.pens.mvp.ui.claimitem.ClaimItemMvpView;
-import com.etemu.pens.mvp.ui.claimitem.ClaimItemPresenter;
+import com.etemu.pens.mvp.ui.about.AboutMvpPresenter;
+import com.etemu.pens.mvp.ui.about.AboutMvpView;
+import com.etemu.pens.mvp.ui.about.AboutPresenter;
+import com.etemu.pens.mvp.ui.claimfoundeditem.ClaimFoundedItemMvpPresenter;
+import com.etemu.pens.mvp.ui.claimfoundeditem.ClaimFoundedItemMvpView;
+import com.etemu.pens.mvp.ui.claimfoundeditem.ClaimFoundedItemPresenter;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemMvpPresenter;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemMvpView;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpView;
 import com.etemu.pens.mvp.ui.home.HomePresenter;
@@ -34,6 +40,10 @@ import com.etemu.pens.mvp.ui.splash.SplashPresenter;
 import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemMvpPresenter;
 import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemMvpView;
 import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemPresenter;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListAdapter;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListMvpPresenter;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListMvpView;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListPresenter;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemMvpPresenter;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemMvpView;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemPresenter;
@@ -113,7 +123,13 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    ClaimItemMvpPresenter<ClaimItemMvpView> provideClaimItemPresenter(ClaimItemPresenter<ClaimItemMvpView> presenter){
+    ClaimMissingItemMvpPresenter<ClaimMissingItemMvpView> provideClaimItemPresenter(ClaimMissingItemPresenter<ClaimMissingItemMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    ClaimFoundedItemMvpPresenter<ClaimFoundedItemMvpView> provideClaimFoundedItemPresenter(ClaimFoundedItemPresenter<ClaimFoundedItemMvpView> presenter){
         return presenter;
     }
 
@@ -124,8 +140,25 @@ public class ActivityModule {
     }
 
     @Provides
+    @PerActivity
+    UploadFoundedItemListMvpPresenter<UploadFoundedItemListMvpView> provideUploadFoundedItemListPresenter(UploadFoundedItemListPresenter<UploadFoundedItemListMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(AboutPresenter<AboutMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
     UploadMissingItemListAdapter provideUploadMissingItemListAdapter(){
         return new UploadMissingItemListAdapter(new ArrayList<>(), context);
+    }
+
+    @Provides
+    UploadFoundedItemListAdapter provideUploadFoundedItemListAdapter(){
+        return new UploadFoundedItemListAdapter(new ArrayList<>(), context);
     }
 
     @Provides

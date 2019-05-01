@@ -1,4 +1,4 @@
-package com.etemu.pens.mvp.ui.claimitem;
+package com.etemu.pens.mvp.ui.about;
 
 import com.etemu.pens.mvp.data.DataManager;
 import com.etemu.pens.mvp.ui.base.BasePresenter;
@@ -10,11 +10,11 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class ClaimItemPresenter<V extends ClaimItemMvpView> extends BasePresenter<V>
-        implements ClaimItemMvpPresenter<V> {
+public class AboutPresenter<V extends AboutMvpView> extends BasePresenter<V>
+        implements AboutMvpPresenter<V> {
 
     @Inject
-    public ClaimItemPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public AboutPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
     }
 }

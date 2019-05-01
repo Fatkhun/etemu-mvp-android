@@ -202,4 +202,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upload_missing_item">Unggah Foto Barang Hilangmu</string>
+    <string name="upload_founded_item">Unggah Foto Barang Temuanmu</string>
+    <string name="find_missing_item">Cari Barangmu yang Hilang</string>
+    <string name="find_founded_item">Daftar Barang Sudah Ditemukan</string>
+    <string name="about_app">Tentang Aplikasi</string>
 </resources>

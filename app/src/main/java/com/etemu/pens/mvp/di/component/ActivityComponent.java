@@ -17,10 +17,13 @@ package com.etemu.pens.mvp.di.component;
 
 import com.etemu.pens.mvp.di.PerActivity;
 import com.etemu.pens.mvp.di.module.ActivityModule;
-import com.etemu.pens.mvp.ui.claimitem.ClaimItemActivity;
+import com.etemu.pens.mvp.ui.about.AboutActivity;
+import com.etemu.pens.mvp.ui.claimfoundeditem.ClaimFoundedItemActivity;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemActivity;
 import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.ui.splash.SplashActivity;
 import com.etemu.pens.mvp.ui.uploadfoundeditem.UploadFoundedItemActivity;
+import com.etemu.pens.mvp.ui.uploadfoundeditemlist.UploadFoundedItemListActivity;
 import com.etemu.pens.mvp.ui.uploadmissingitem.UploadMissingItemActivity;
 import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListActivity;
 
@@ -42,7 +45,13 @@ public interface ActivityComponent {
 
     void inject(UploadFoundedItemActivity activity);
 
-    void inject(ClaimItemActivity activity);
+    void inject(ClaimMissingItemActivity activity);
 
     void inject(UploadMissingItemListActivity activity);
+
+    void inject(UploadFoundedItemListActivity activity);
+
+    void inject(ClaimFoundedItemActivity activity);
+
+    void inject(AboutActivity activity);
 }

@@ -1,4 +1,4 @@
-package com.etemu.pens.mvp.ui.uploadfoundeditem;
+package com.etemu.pens.mvp.ui.claimmissingitem;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,26 +6,25 @@ import android.os.Bundle;
 
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
-import com.etemu.pens.mvp.utils.KeyboardUtils;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class UploadFoundedItemActivity extends BaseActivity implements UploadFoundedItemMvpView {
+public class ClaimMissingItemActivity extends BaseActivity implements ClaimMissingItemMvpView {
 
     @Inject
-    UploadFoundedItemMvpPresenter<UploadFoundedItemMvpView> mPresenter;
+    ClaimMissingItemMvpPresenter<ClaimMissingItemMvpView> mPresenter;
 
     public static Intent getStartIntent(Context context) {
-        Intent intent = new Intent(context, UploadFoundedItemActivity.class);
+        Intent intent = new Intent(context, ClaimMissingItemActivity.class);
         return intent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_founded_item);
+        setContentView(R.layout.activity_claim_missing_item);
 
         getActivityComponent().inject(this);
 

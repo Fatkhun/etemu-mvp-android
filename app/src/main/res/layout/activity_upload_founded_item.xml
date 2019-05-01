@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.uploadfoundeditem.UploadFoundedItemActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:theme="@style/Toolbar"/>
+
+        <View
+            android:id="@+id/toolbar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_shadow_height"
+            android:layout_marginBottom="@dimen/toolbar_shadow_adjust"
+            android:background="@drawable/toolbar_shadow" />
+
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/img_brg_temuan"
         android:layout_width="match_parent"
@@ -58,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="380dp"
             android:orientation="vertical"
-            android:background="@color/colorPrimary">
+            android:background="@color/lightGray">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

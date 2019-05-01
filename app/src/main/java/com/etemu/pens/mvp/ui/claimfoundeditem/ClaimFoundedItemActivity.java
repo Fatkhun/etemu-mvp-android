@@ -1,4 +1,4 @@
-package com.etemu.pens.mvp.ui.claimitem;
+package com.etemu.pens.mvp.ui.claimfoundeditem;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,28 +7,28 @@ import android.os.Bundle;
 
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
-import com.etemu.pens.mvp.ui.home.HomeActivity;
-import com.etemu.pens.mvp.ui.home.HomeMvpPresenter;
-import com.etemu.pens.mvp.ui.home.HomeMvpView;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemActivity;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemMvpPresenter;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemMvpView;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class ClaimItemActivity extends BaseActivity implements ClaimItemMvpView {
+public class ClaimFoundedItemActivity extends BaseActivity implements ClaimFoundedItemMvpView {
 
     @Inject
-    ClaimItemMvpPresenter<ClaimItemMvpView> mPresenter;
+    ClaimFoundedItemMvpPresenter<ClaimFoundedItemMvpView> mPresenter;
 
     public static Intent getStartIntent(Context context) {
-        Intent intent = new Intent(context, ClaimItemActivity.class);
+        Intent intent = new Intent(context, ClaimFoundedItemActivity.class);
         return intent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_claim_item);
+        setContentView(R.layout.activity_claim_founded_item);
 
         getActivityComponent().inject(this);
 

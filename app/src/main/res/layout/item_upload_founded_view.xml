@@ -28,7 +28,7 @@
                 android:layout_weight="2">
 
                 <ImageView
-                    android:id="@+id/iv_upload_missing_item_list"
+                    android:id="@+id/iv_upload_founded_item_list"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/logo_sa"/>
@@ -41,7 +41,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
-                    android:id="@+id/tv_desc_upload_missing_item_list"
+                    android:id="@+id/tv_desc_upload_founded_item_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"

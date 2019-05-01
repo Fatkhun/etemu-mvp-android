@@ -28,8 +28,8 @@ public final class AppConstants {
 
     public static final String BASE_URL_API = "http://192.168.43.36:8080/";
 
-    public static final String DB_NAME = "agriculture_mvp.db";
-    public static final String PREF_NAME = "agriculture_pref";
+    public static final String DB_NAME = "etemu_mvp.db";
+    public static final String PREF_NAME = "etemu_pref";
 
     public static final String NULL_INDEX = "-1L";
 
@@ -39,10 +39,8 @@ public final class AppConstants {
     public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 
     public static final String CHANNEL_ID = "my_channel_01";
-    public static final String CHANNEL_NAME = "Agriculture Notification";
-    public static final String CHANNEL_DESCRIPTION = "www.smart.id";
-
-    public static final String DEVICEID = "5c7ebb4267722562b4cc4395";
+    public static final String CHANNEL_NAME = "Etemu Notification";
+    public static final String CHANNEL_DESCRIPTION = "www.etemu.id";
 
     private AppConstants() {
         // This utility class is not publicly instantiable
