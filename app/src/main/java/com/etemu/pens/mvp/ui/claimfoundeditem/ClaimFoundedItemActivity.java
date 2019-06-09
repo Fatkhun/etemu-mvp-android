@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
@@ -13,6 +14,7 @@ import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemMvpView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ClaimFoundedItemActivity extends BaseActivity implements ClaimFoundedItemMvpView {

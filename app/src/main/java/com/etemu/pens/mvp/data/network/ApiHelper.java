@@ -15,6 +15,14 @@
 
 package com.etemu.pens.mvp.data.network;
 
+import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
+
+import java.io.File;
+import java.util.List;
+
+import io.reactivex.Single;
+
 /**
  * Created by janisharali on 27/01/17.
  */
@@ -23,4 +31,7 @@ public interface ApiHelper {
 
     ApiHeader getApiHeader();
 
+    Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String ImageFile);
+
+    Single<List<CategoryItemResponse>> getCategoryItem();
 }

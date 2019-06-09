@@ -1,18 +1,40 @@
 package com.etemu.pens.mvp.ui.uploadmissingitem;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.etemu.pens.mvp.R;
+import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
 import com.etemu.pens.mvp.ui.splash.SplashActivity;
 import com.etemu.pens.mvp.ui.splash.SplashMvpPresenter;
 import com.etemu.pens.mvp.ui.splash.SplashMvpView;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class UploadMissingItemActivity extends BaseActivity implements UploadMissingItemMvpView {
@@ -20,10 +42,33 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
     @Inject
     UploadMissingItemMvpPresenter<UploadMissingItemMvpView> mPresenter;
 
+    @BindView(R.id.btn_take_photo)
+    Button btnTakePhoto;
+
+    @BindView(R.id.iv_missing_item)
+    ImageView ivMissingItem;
+
+    @BindView(R.id.btn_save_missing_item)
+    Button btnSaveMissingItem;
+
+    @BindView(R.id.sp_category_item)
+    Spinner spCategoryItem;
+
+    @BindView(R.id.et_detail_missing_item)
+    EditText etDetailMissingItem;
+
+    @BindView(R.id.et_contact_missing_item)
+    EditText etContactMissingItem;
+
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadMissingItemActivity.class);
         return intent;
     }
+
+    Uri mCropImageUri, resultUri;
+    Bitmap bitmap = null;
+
+    String mCategory, mDetail, mContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +86,120 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
 
     @Override
     protected void setUp() {
+        btnTakePhoto.setOnClickListener(v -> {
+            onSelectImageClick(ivMissingItem);
+        });
 
+        btnSaveMissingItem.setOnClickListener(v -> {
+            mCategory = spCategoryItem.getSelectedItem().toString();
+            mDetail = etDetailMissingItem.getText().toString();
+            mContact = etContactMissingItem.getText().toString();
+            mPresenter.setUploadMissingItem(mCategory, mDetail, mContact, bitmap);
+        });
+
+        mPresenter.getCategoryItem(spCategoryItem);
+    }
+
+    // clear cache
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            if (dir != null && dir.isDirectory()) {
+                deleteDir(dir);
+            } else if(dir.isFile()) {
+                dir.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }
+
+
+    @SuppressLint("NewApi")
+    public void onSelectImageClick(View view) {
+        if (CropImage.isExplicitCameraPermissionRequired(this)) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, CropImage.CAMERA_CAPTURE_PERMISSIONS_REQUEST_CODE);
+        } else {
+            CropImage.startPickImageActivity(this);
+        }
+    }
+
+    @Override
+    @SuppressLint("NewApi")
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // handle result of pick image chooser
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Uri imageUri = CropImage.getPickImageResultUri(this, data);
+            // For API >= 23 we need to check specifically that we have permissions to read external storage.
+            if (CropImage.isReadExternalStoragePermissionsRequired(this, imageUri)) {
+                // request permissions and handle the result in onRequestPermissionsResult()
+                mCropImageUri = imageUri;
+                Toast.makeText(this, "Permission dibutuhkan untuk mengambil gambar", Toast.LENGTH_SHORT).show();
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},   CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+            }else {
+                // no permissions required or already granted, can start crop image activity
+                startCropImageActivity(imageUri);
+            }
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            Log.d("DEbug","Kepanggil");
+            if (resultCode == RESULT_OK) {
+                resultUri = result.getUri();
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+                Log.d("Error",error.toString());
+            }
+        }
+    }
+
+    private void startCropImageActivity(Uri imageUri) {
+        CropImage.activity(imageUri)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setMinCropWindowSize(0,0)
+                .setMinCropResultSize(500,500)
+                .setMaxCropResultSize(2000,2000)
+                .setShowCropOverlay(true)
+                .start(this);
     }
 
     @Override
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+
+    @Override
+    public void setupCategoryItem(List<String> stringList, Spinner spinner) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, stringList);
+        // muncul pilihan brand
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set adapter
+        spinner.setAdapter(adapter);
     }
 }

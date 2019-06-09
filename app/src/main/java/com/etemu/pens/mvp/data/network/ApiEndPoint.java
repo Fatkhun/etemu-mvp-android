@@ -16,14 +16,23 @@
 package com.etemu.pens.mvp.data.network;
 
 
+import com.etemu.pens.mvp.utils.AppConstants;
+
 /**
  * Created by amitshekhar on 01/02/17.
  */
 
 public final class ApiEndPoint {
 
+
     private ApiEndPoint() {
         // This class is not publicly instantiable
     }
+
+    public static final String ENDPOINT_UPLOAD_MISSING_ITEM = AppConstants.BASE_URL_API
+            + "missing/create";
+
+    public static final String ENDPOINT_CATEGORY_ITEM = AppConstants.BASE_URL_API
+            + "category/all";
 
 }

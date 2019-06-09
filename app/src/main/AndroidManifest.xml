@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MvpApp"
@@ -19,6 +22,9 @@
         <activity android:name=".ui.about.AboutActivity"></activity>
         <activity android:name=".ui.claimfoundeditem.ClaimFoundedItemActivity" />
         <activity android:name=".ui.uploadfoundeditemlist.UploadFoundedItemListActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
         <activity
             android:name=".ui.uploudmissingitemlist.UploadMissingItemListActivity"
             android:launchMode="singleTop"

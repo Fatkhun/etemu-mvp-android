@@ -7,6 +7,7 @@
     tools:context=".ui.uploadmissingitem.UploadMissingItemActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_barlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -27,8 +28,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/img_brg_temuan"
+    <ImageView
+        android:id="@+id/iv_missing_item"
+        android:layout_below="@id/app_barlayout"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
 
@@ -36,7 +38,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/img_brg_temuan"
+        android:layout_below="@id/iv_missing_item"
         android:background="@color/colorPrimaryDark"
         android:baselineAligned="false"
         android:orientation="horizontal">
@@ -66,7 +68,7 @@
             android:layout_weight="0.5">
 
             <Button
-                android:id="@+id/btn_simpan"
+                android:id="@+id/btn_take_photo"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -120,23 +122,26 @@
                     android:padding="5dp">
 
                     <Spinner
-                        style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                        android:id="@+id/sp_category_item"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></Spinner>
+                        android:layout_height="wrap_content"
+                        android:drawSelectorOnTop="true"/>
                 </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:hint="Masukkan detail dari barang temuan .."
                     android:text="Detail dari barang temuan"
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/et_detail_missing_item"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="5dp"
+                    android:hint="Masukkan detail dari barang temuan .."
                     android:background="@color/white" />
 
                 <TextView
@@ -146,12 +151,15 @@
                     android:text="Kontak yang dapat dihubungi" />
 
                 <EditText
+                    android:id="@+id/et_contact_missing_item"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="5dp"
+                    android:hint="Masukkan kontak"
                     android:background="@color/white" />
 
                 <Button
+                    android:id="@+id/btn_save_missing_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

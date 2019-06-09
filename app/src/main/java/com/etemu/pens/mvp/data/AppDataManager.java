@@ -20,11 +20,18 @@ import android.content.Context;
 
 import com.etemu.pens.mvp.data.network.ApiHeader;
 import com.etemu.pens.mvp.data.network.ApiHelper;
+import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.data.prefs.PreferencesHelper;
 import com.etemu.pens.mvp.di.ApplicationContext;
 
+import java.io.File;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.Single;
 
 /**
  * Created by janisharali on 27/01/17.
@@ -51,6 +58,16 @@ public class AppDataManager implements DataManager {
     @Override
     public ApiHeader getApiHeader() {
         return mApiHelper.getApiHeader();
+    }
+
+    @Override
+    public Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String ImageFile) {
+        return mApiHelper.uploadMissingItem(category, detail, contact, ImageFile);
+    }
+
+    @Override
+    public Single<List<CategoryItemResponse>> getCategoryItem() {
+        return mApiHelper.getCategoryItem();
     }
 
     @Override

@@ -16,13 +16,20 @@
 package com.etemu.pens.mvp.data.network;
 
 
+import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.data.prefs.PreferencesHelper;
+import com.rx2androidnetworking.Rx2AndroidNetworking;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.Single;
 
 /**
  * Created by janisharali on 28/01/17.
@@ -47,12 +54,47 @@ public class AppApiHelper implements ApiHelper {
         return mApiHeader;
     }
 
+    @Override
+    public Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String imageFile) {
+        Map<String, String> map = new MapBuilder()
+                .add("category", category)
+                .add("detail", detail)
+                .add("contact", contact)
+                .add("itemImage", imageFile)
+                .build();
+
+        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_UPLOAD_MISSING_ITEM)
+                .setContentType("")
+                .addApplicationJsonBody(map)
+                .build()
+                .getObjectSingle(UploadMissingItemResponse.class);
+    }
+
+    @Override
+    public Single<List<CategoryItemResponse>> getCategoryItem() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_CATEGORY_ITEM)
+                .build()
+                .getObjectListSingle(CategoryItemResponse.class);
+    }
+
     private Map<String, String> getHeader(){
         if (mHeader == null){
             mHeader = new HashMap<>();
-            mHeader.put("x-access-token", mApiHeader.getProtectedApiHeader().getAccessToken());
+            mHeader.put("Content-Type", "multipart/form-data");
         }
         return mHeader;
+    }
+
+    private class MapBuilder extends HashMap<String, String>{
+
+        public MapBuilder add(String key,String value){
+            put(key,value);
+            return this;
+        }
+
+        public Map<String,String> build(){
+            return this;
+        }
     }
 }
 

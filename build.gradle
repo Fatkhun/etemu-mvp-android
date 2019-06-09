@@ -36,7 +36,7 @@ allprojects {
         mavenCentral()
         mavenLocal()
         maven {
-            url  'http://dl.bintray.com/gigamole/maven/'
+            url "https://jitpack.io"
         }
     }
 }
