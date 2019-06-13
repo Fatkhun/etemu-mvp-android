@@ -3,7 +3,9 @@ package com.etemu.pens.mvp.data.network.model;
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
-public class UploadMissingItemResponse{
+import java.io.Serializable;
+
+public class UploadMissingItemResponse implements Serializable {
 
 	@SerializedName("itemType")
 	private String itemType;

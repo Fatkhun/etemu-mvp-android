@@ -71,6 +71,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<List<UploadMissingItemResponse>> getUploadMissingItem() {
+        return mApiHelper.getUploadMissingItem();
+    }
+
+    @Override
     public String getAccessToken() {
         return mPreferencesHelper.getAccessToken();
     }

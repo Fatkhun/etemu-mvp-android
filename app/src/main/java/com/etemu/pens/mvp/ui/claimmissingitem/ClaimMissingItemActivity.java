@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.etemu.pens.mvp.R;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItem;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -20,6 +22,8 @@ public class ClaimMissingItemActivity extends BaseActivity implements ClaimMissi
         Intent intent = new Intent(context, ClaimMissingItemActivity.class);
         return intent;
     }
+
+    UploadMissingItemResponse uploadMissingItemResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,21 @@ public class ClaimMissingItemActivity extends BaseActivity implements ClaimMissi
 
     }
 
+    private void getIntentDetail(){
+        if (getIntent().getSerializableExtra("detail") != null){
+            uploadMissingItemResponse = (UploadMissingItemResponse) getIntent().getSerializableExtra("detail");
+            setFieldResult(uploadMissingItemResponse);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public void setFieldResult(UploadMissingItemResponse uploadMissingItemResponse) {
+
     }
 }

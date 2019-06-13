@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.data.network.model.UploadMissingItem;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseViewHolder;
 
 import java.text.ParseException;
@@ -29,12 +30,12 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
 
 
     UploadMissingItemListAdapter.Callback mCallback;
-    private List<UploadMissingItem> mData;
-    List<UploadMissingItem> mDataDefault;
+    private List<UploadMissingItemResponse> mData;
+    List<UploadMissingItemResponse> mDataDefault;
     private String mType;
     Context context;
 
-    public UploadMissingItemListAdapter(List<UploadMissingItem> dataResponseList, Context context) {
+    public UploadMissingItemListAdapter(List<UploadMissingItemResponse> dataResponseList, Context context) {
         mData = dataResponseList;
         this.context = context;
     }
@@ -82,7 +83,7 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
         }
     }
 
-    public void addItems(List<UploadMissingItem> dataResponses) {
+    public void addItems(List<UploadMissingItemResponse> dataResponses) {
         mData.clear();
         mData.addAll(dataResponses);
         mDataDefault = dataResponses;
@@ -91,6 +92,7 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
 
     public interface Callback {
         void onBlogEmptyViewRetryClick();
+        void onItemLocationListClick(int position);
     }
 
     public class ViewHolder extends BaseViewHolder {
@@ -113,8 +115,15 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
         public void onBind(int position) {
             super.onBind(position);
 
-            itemView.setOnClickListener(v->{
+            UploadMissingItemResponse item = mData.get(position);
+            Log.d("Debug", mData.toString());
 
+            tvDesc.setText(item.getDetail());
+
+            itemView.setOnClickListener(v->{
+                if (mCallback != null){
+                    mCallback.onItemLocationListClick(position);
+                }
             });
 
         }

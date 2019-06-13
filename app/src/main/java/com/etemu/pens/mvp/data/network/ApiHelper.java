@@ -34,4 +34,6 @@ public interface ApiHelper {
     Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String ImageFile);
 
     Single<List<CategoryItemResponse>> getCategoryItem();
+
+    Single<List<UploadMissingItemResponse>> getUploadMissingItem();
 }

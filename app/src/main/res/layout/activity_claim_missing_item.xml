@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/light_gray"
     tools:context=".ui.claimmissingitem.ClaimMissingItemActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -35,7 +35,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:padding="10dp">
@@ -57,41 +57,34 @@
             android:padding="5dp"
             android:layout_marginTop="5dp"
             android:background="#FFFFFF">
-            <Spinner
-                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
-            </Spinner>
+                android:text="-"/>
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tempat ditemukannya Barang"
             android:layout_marginTop="5dp"/>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@color/white"
+            android:text="-"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kontak yang dapat dihubungi"
             android:layout_marginTop="5dp"/>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="5dp"
             android:layout_height="50dp"
             android:background="@color/white"
+            android:text="-"
             />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Klaim Barang"/>
-
     </LinearLayout>
 </LinearLayout>

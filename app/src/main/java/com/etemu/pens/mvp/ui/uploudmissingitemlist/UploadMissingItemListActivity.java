@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.data.network.model.UploadMissingItem;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
+import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemActivity;
 import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.ui.home.HomeMvpPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpView;
@@ -39,6 +43,11 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     @BindView(R.id.rv_upload_missing_item)
     RecyclerView rvUploadMissingItem;
 
+    @BindView(R.id.sp_category_item)
+    Spinner spCategoryItem;
+
+    List<UploadMissingItemResponse> uploadMissingItemResponses;
+
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadMissingItemListActivity.class);
         return intent;
@@ -65,7 +74,11 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
         rvUploadMissingItem.setLayoutManager(mLayoutManager);
         rvUploadMissingItem.setItemAnimator(new DefaultItemAnimator());
         rvUploadMissingItem.setAdapter(mUploadMissingItemListAdapter);
+        mUploadMissingItemListAdapter.setCallback(this);
 
+
+        mPresenter.getUploadMissingItem();
+        mPresenter.getCategoryItem(spCategoryItem);
     }
 
     @Override
@@ -80,7 +93,26 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     }
 
     @Override
-    public void updateUploadMissingItemList(List<UploadMissingItem> uploadMissingItem) {
+    public void onItemLocationListClick(int position) {
+        Intent intent = ClaimMissingItemActivity.getStartIntent(this);
+        intent.putExtra("detail", uploadMissingItemResponses.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void updateUploadMissingItemList(List<UploadMissingItemResponse> uploadMissingItem) {
+        uploadMissingItemResponses = uploadMissingItem;
         mUploadMissingItemListAdapter.addItems(uploadMissingItem);
+        mUploadMissingItemListAdapter.setCallback(this);
+    }
+
+    @Override
+    public void setupCategoryItem(List<String> stringList, Spinner spinner) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, stringList);
+        // muncul pilihan brand
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set adapter
+        spinner.setAdapter(adapter);
     }
 }

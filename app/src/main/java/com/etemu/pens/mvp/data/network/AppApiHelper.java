@@ -64,7 +64,7 @@ public class AppApiHelper implements ApiHelper {
                 .build();
 
         return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_UPLOAD_MISSING_ITEM)
-                .setContentType("")
+                .setContentType("application/json")
                 .addApplicationJsonBody(map)
                 .build()
                 .getObjectSingle(UploadMissingItemResponse.class);
@@ -75,6 +75,13 @@ public class AppApiHelper implements ApiHelper {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_CATEGORY_ITEM)
                 .build()
                 .getObjectListSingle(CategoryItemResponse.class);
+    }
+
+    @Override
+    public Single<List<UploadMissingItemResponse>> getUploadMissingItem() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_LIST_MISSING_ITEM)
+                .build()
+                .getObjectListSingle(UploadMissingItemResponse.class);
     }
 
     private Map<String, String> getHeader(){

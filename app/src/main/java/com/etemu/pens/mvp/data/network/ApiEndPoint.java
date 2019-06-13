@@ -35,4 +35,7 @@ public final class ApiEndPoint {
     public static final String ENDPOINT_CATEGORY_ITEM = AppConstants.BASE_URL_API
             + "category/all";
 
+    public static final String ENDPOINT_LIST_MISSING_ITEM = AppConstants.BASE_URL_API
+            + "missing/all";
+
 }
