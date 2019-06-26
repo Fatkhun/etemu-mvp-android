@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.etemu.pens.mvp.R;
@@ -19,6 +20,7 @@ import com.etemu.pens.mvp.ui.uploudmissingitemlist.UploadMissingItemListActivity
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,6 +28,9 @@ public class HomeActivity extends BaseActivity implements HomeMvpView {
 
     @Inject
     HomeMvpPresenter<HomeMvpView> mPresenter;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
@@ -48,7 +53,8 @@ public class HomeActivity extends BaseActivity implements HomeMvpView {
 
     @Override
     protected void setUp() {
-
+        mToolbar.setTitle("Etemu");
+        setSupportActionBar(mToolbar);
     }
 
     @OnClick(R.id.cv_upload_missing_item)

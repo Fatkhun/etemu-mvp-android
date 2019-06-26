@@ -54,7 +54,7 @@ public class UploadFoundedItemListActivity extends BaseActivity implements Uploa
     @BindView(R.id.sv_founded_item)
     MaterialSearchView searchView;
 
-    @BindView(R.id.toolbars)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     List<UploadFoundedItemResponse> uploadFoundedItemResponses;
@@ -81,7 +81,7 @@ public class UploadFoundedItemListActivity extends BaseActivity implements Uploa
 
     @Override
     protected void setUp() {
-        mToolbar.setTitle("Detail");
+        mToolbar.setTitle("Daftar Barang Ditemukan");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(mToolbar);
@@ -138,6 +138,12 @@ public class UploadFoundedItemListActivity extends BaseActivity implements Uploa
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override

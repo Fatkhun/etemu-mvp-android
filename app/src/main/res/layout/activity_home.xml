@@ -53,7 +53,7 @@
                     android:clickable="true"
                     android:id="@+id/cv_upload_missing_item"
                     app:cardCornerRadius="7dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="5dp"
                     android:layout_width="170dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp">
@@ -76,6 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="@string/upload_missing_item"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
@@ -87,7 +88,7 @@
                     android:clickable="true"
                     android:id="@+id/cv_upload_founded_item"
                     app:cardCornerRadius="7dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="5dp"
                     android:layout_width="170dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp">
@@ -110,6 +111,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="@string/upload_founded_item"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
@@ -130,7 +132,7 @@
                     android:layout_width="170dp"
                     android:id="@+id/cv_upload_missing_item_list"
                     app:cardCornerRadius="7dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="5dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp">
                     <LinearLayout
@@ -152,6 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="@string/find_missing_item"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
@@ -162,7 +165,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     app:cardCornerRadius="7dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="5dp"
                     android:layout_width="170dp"
                     android:layout_height="190dp"
                     android:id="@+id/cv_upload_founded_item_list"
@@ -186,6 +189,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
                             android:text="@string/find_founded_item"
                             android:padding="5dp"
                             android:textColor="@android:color/darker_gray"/>
@@ -204,7 +208,7 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     app:cardCornerRadius="7dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="5dp"
                     android:layout_width="360dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
@@ -225,6 +229,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_marginTop="10dp"
                             android:text="@string/about_app"/>
 

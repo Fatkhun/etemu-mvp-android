@@ -41,10 +41,10 @@ public class UploadMissingItemListAdapter extends RecyclerView.Adapter<BaseViewH
     UploadMissingItemListAdapter.Callback mCallback;
     private List<UploadMissingItemResponse> mData;
     List<UploadMissingItemResponse> mDataDefault;
-    List<String> mType = new ArrayList<>();
+    String mType;
     Context context;
 
-    public UploadMissingItemListAdapter(List<UploadMissingItemResponse> dataResponseList, Context context, List<String> Type) {
+    public UploadMissingItemListAdapter(List<UploadMissingItemResponse> dataResponseList, Context context, String Type) {
         mData = dataResponseList;
         this.context = context;
         mType = Type;

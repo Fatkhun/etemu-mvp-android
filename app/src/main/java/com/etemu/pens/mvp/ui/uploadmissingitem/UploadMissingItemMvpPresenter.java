@@ -13,4 +13,6 @@ public interface UploadMissingItemMvpPresenter<V extends UploadMissingItemMvpVie
     void setUploadMissingItem(String category, String detail, String contact, Bitmap imageFile);
 
     void getCategoryItem(Spinner spinner);
+
+    Boolean isValidPhone(String phone);
 }

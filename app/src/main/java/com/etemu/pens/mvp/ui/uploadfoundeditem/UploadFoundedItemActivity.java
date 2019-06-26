@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,6 +46,9 @@ public class UploadFoundedItemActivity extends BaseActivity implements UploadFou
     @BindView(R.id.btn_take_photo_founded_item)
     Button btnTakePhoto;
 
+    @BindView(R.id.btn_cancel_founded_item)
+    Button btnCancel;
+
     @BindView(R.id.iv_founded_item)
     ImageView ivFoundedItem;
 
@@ -58,6 +63,9 @@ public class UploadFoundedItemActivity extends BaseActivity implements UploadFou
 
     @BindView(R.id.et_contact_founded_item)
     EditText etContactFoundedItem;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadFoundedItemActivity.class);
@@ -85,8 +93,16 @@ public class UploadFoundedItemActivity extends BaseActivity implements UploadFou
 
     @Override
     protected void setUp() {
+        mToolbar.setTitle("Upload Barang Ditemukan");
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(mToolbar);
         btnTakePhoto.setOnClickListener(v -> {
             onSelectImageClick(ivFoundedItem);
+        });
+        btnCancel.setOnClickListener(v -> {
+            deleteCache(this);
+            ivFoundedItem.setImageBitmap(null);
         });
 
         btnSaveFoundedItem.setOnClickListener(v -> {
@@ -98,6 +114,37 @@ public class UploadFoundedItemActivity extends BaseActivity implements UploadFou
 
         mPresenter.getCategoryItem(spCategoryItem);
 
+    }
+
+    // clear cache
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            if (dir != null && dir.isDirectory()) {
+                deleteDir(dir);
+            } else if(dir.isFile()) {
+                dir.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
     }
 
     @SuppressLint("NewApi")
@@ -166,6 +213,12 @@ public class UploadFoundedItemActivity extends BaseActivity implements UploadFou
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override

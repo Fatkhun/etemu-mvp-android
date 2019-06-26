@@ -48,18 +48,20 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     @BindView(R.id.rv_upload_missing_item)
     RecyclerView rvUploadMissingItem;
 
-    @BindView(R.id.sp_category_item)
+    @BindView(R.id.sp_category_missingtem_list)
     Spinner spCategoryItem;
 
     @BindView(R.id.sv_missing_item)
     MaterialSearchView searchView;
 
-    @BindView(R.id.toolbars)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     List<UploadMissingItemResponse> uploadMissingItemResponses;
 
     List<String> type = new ArrayList<>();
+
+    String mCategory;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadMissingItemListActivity.class);
@@ -82,12 +84,12 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
 
     @Override
     protected void setUp() {
-        mToolbar.setTitle("Detail");
+        mToolbar.setTitle("Daftar Barang Hilang");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(mToolbar);
 
-        mUploadMissingItemListAdapter = new UploadMissingItemListAdapter(new ArrayList<>(), this, type);
+        mUploadMissingItemListAdapter = new UploadMissingItemListAdapter(new ArrayList<>(), this, mCategory);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvUploadMissingItem.setLayoutManager(mLayoutManager);
         rvUploadMissingItem.setItemAnimator(new DefaultItemAnimator());
@@ -130,7 +132,6 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
             }
         });
 
-
         mPresenter.getUploadMissingItem();
         mPresenter.getCategoryItem(spCategoryItem);
     }
@@ -139,6 +140,12 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override

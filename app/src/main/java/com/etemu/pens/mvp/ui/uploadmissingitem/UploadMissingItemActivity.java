@@ -9,8 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.media.MediaBrowserCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -48,6 +52,9 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
 
     @BindView(R.id.btn_take_photo)
     Button btnTakePhoto;
+
+    @BindView(R.id.btn_cancel_missing_item)
+    Button btnCancel;
 
     @BindView(R.id.iv_missing_item)
     ImageView ivMissingItem;
@@ -63,6 +70,9 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
 
     @BindView(R.id.et_contact_missing_item)
     EditText etContactMissingItem;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadMissingItemActivity.class);
@@ -90,8 +100,17 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
 
     @Override
     protected void setUp() {
+        mToolbar.setTitle("Upload Barang Hilang");
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(mToolbar);
         btnTakePhoto.setOnClickListener(v -> {
             onSelectImageClick(ivMissingItem);
+        });
+
+        btnCancel.setOnClickListener(v -> {
+            deleteCache(this);
+            ivMissingItem.setImageBitmap(null);
         });
 
         btnSaveMissingItem.setOnClickListener(v -> {
@@ -204,6 +223,11 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
         super.onDestroy();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 
     @Override
     public void setupCategoryItem(List<String> stringList, Spinner spinner) {

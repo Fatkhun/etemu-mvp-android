@@ -40,6 +40,7 @@
             <ImageView
                 android:id="@+id/iv_founded_item"
                 android:layout_width="match_parent"
+                android:scaleType="centerCrop"
                 android:layout_height="300dp" />
 
             <LinearLayout
@@ -58,13 +59,13 @@
                     android:layout_weight="0.5">
 
                     <Button
-                        android:id="@+id/btn_replay"
+                        android:id="@+id/btn_cancel_founded_item"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="50dp"
                         android:drawableLeft="@drawable/ic_replay"
-                        android:text="Ulangi" />
+                        android:text="Cancel" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -92,35 +93,34 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/roboto_bold"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Tambahkan Detail Barang Temuan"
-                    android:textAllCaps="true"
-                    android:textStyle="bold" />
+                    android:textAllCaps="true"/>
 
                 <LinearLayout
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="15dp">
 
                     <TextView
                         android:id="@+id/tv_kategori_founded_item"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Pilih Kategori"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/roboto_bold"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="#FFFFFF"
+                        android:background="@drawable/bg_rectangle_edittext"
                         android:padding="5dp">
 
                         <Spinner
@@ -131,42 +131,69 @@
                             android:drawSelectorOnTop="true"/>
                     </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Detail dari barang temuan"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/et_detail_founded_item"
+                    <View
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Masukkan detail dari barang temuan .."
-                        android:background="@color/white" />
+                        android:layout_height="1dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_bold"
                         android:text="Kontak yang dapat dihubungi" />
 
                     <EditText
                         android:id="@+id/et_contact_founded_item"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Masukkan kontak"
-                        android:background="@color/white" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:background="@drawable/bg_rectangle_edittext"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:hint="ex : 62822xxxxxxxx"
+                        android:inputType="phone"/>
+
+                    <View
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail dari barang temuan"
+                        android:fontFamily="@font/roboto_bold"/>
+
+                    <EditText
+                        android:id="@+id/et_detail_founded_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:background="@drawable/bg_rectangle_edittext"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:hint="Catatan barang temuan seperti lokasi dan ciri-ciri barang"
+                        android:inputType="textMultiLine"
+                        android:lines="5"/>
+
 
                     <Button
                         android:id="@+id/btn_save_founded_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="10dp"
-                        android:text="Simpan" />
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:text="Simpan"
+                        android:fontFamily="@font/roboto_bold"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:textAllCaps="true"
+                        android:background="@drawable/bg_rectangle_button"
+                        android:textColor="@android:color/white"
+                        android:shadowRadius="14000" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

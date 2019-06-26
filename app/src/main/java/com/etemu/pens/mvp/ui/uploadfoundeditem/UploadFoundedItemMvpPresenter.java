@@ -10,4 +10,5 @@ import com.etemu.pens.mvp.ui.base.MvpPresenter;
 public interface UploadFoundedItemMvpPresenter<V extends UploadFoundedItemMvpView> extends MvpPresenter<V> {
     void setUploadFoundedItem(String category, String detail, String contact, Bitmap imageFile);
     void getCategoryItem(Spinner spinner);
+    Boolean isValidPhone(String phone);
 }

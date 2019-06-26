@@ -18,7 +18,7 @@
             android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbars"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimaryDark"
@@ -41,15 +41,6 @@
         android:layout_height="wrap_content"
         android:background="@color/lightGray">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daftar Barang Hilang"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:fontFamily="@font/roboto_black"
-            android:textColor="@color/black_effective"
-            android:layout_gravity="center_horizontal"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -72,7 +63,7 @@
                 android:layout_marginRight="15dp"
                 android:background="#FFFFFF">
                 <Spinner
-                    android:id="@+id/sp_category_item"
+                    android:id="@+id/sp_category_missingtem_list"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

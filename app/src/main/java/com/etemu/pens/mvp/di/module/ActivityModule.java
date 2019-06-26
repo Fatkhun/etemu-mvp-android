@@ -71,7 +71,7 @@ public class ActivityModule {
     private AppCompatActivity mActivity;
     Context context;
     Cursor cursor;
-    List<String> type = new ArrayList<>();
+    String type;
 
     public ActivityModule(AppCompatActivity activity) {
         this.mActivity = activity;
