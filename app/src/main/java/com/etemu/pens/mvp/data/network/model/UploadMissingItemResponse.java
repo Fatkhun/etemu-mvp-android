@@ -25,6 +25,9 @@ public class UploadMissingItemResponse implements Serializable {
 	@SerializedName("itemImage")
 	private String itemImage;
 
+	@SerializedName("createdAt")
+	private String time;
+
 	public void setItemType(String itemType){
 		this.itemType = itemType;
 	}
@@ -73,16 +76,24 @@ public class UploadMissingItemResponse implements Serializable {
 		return itemImage;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	@Override
- 	public String toString(){
-		return 
-			"UploadMissingItemResponse{" + 
-			"itemType = '" + itemType + '\'' + 
-			",contact = '" + contact + '\'' + 
-			",_id = '" + id + '\'' + 
-			",detail = '" + detail + '\'' + 
-			",category = '" + category + '\'' + 
-			",itemImage = '" + itemImage + '\'' + 
-			"}";
-		}
+	public String toString() {
+		return "UploadMissingItemResponse{" +
+				"itemType='" + itemType + '\'' +
+				", contact='" + contact + '\'' +
+				", id='" + id + '\'' +
+				", detail='" + detail + '\'' +
+				", category='" + category + '\'' +
+				", itemImage='" + itemImage + '\'' +
+				", time='" + time + '\'' +
+				'}';
+	}
 }

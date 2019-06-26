@@ -1,20 +1,28 @@
 package com.etemu.pens.mvp.ui.uploadfoundeditemlist;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.etemu.pens.mvp.R;
-import com.etemu.pens.mvp.data.network.model.UploadMissingItem;
+import com.etemu.pens.mvp.data.network.model.UploadFoundedItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseViewHolder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -22,18 +30,20 @@ import java.util.TimeZone;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.google.android.gms.internal.zzs.TAG;
+
 public class UploadFoundedItemListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_EMPTY = 0;
     public static final int VIEW_TYPE_NORMAL = 1;
 
 
     UploadFoundedItemListAdapter.Callback mCallback;
-    private List<UploadMissingItem> mData;
-    List<UploadMissingItem> mDataDefault;
+    private List<UploadFoundedItemResponse> mData;
+    List<UploadFoundedItemResponse> mDataDefault;
     private String mType;
     Context context;
 
-    public UploadFoundedItemListAdapter(List<UploadMissingItem> dataResponseList, Context context) {
+    public UploadFoundedItemListAdapter(List<UploadFoundedItemResponse> dataResponseList, Context context) {
         mData = dataResponseList;
         this.context = context;
     }
@@ -81,27 +91,44 @@ public class UploadFoundedItemListAdapter extends RecyclerView.Adapter<BaseViewH
         }
     }
 
-    public void addItems(List<UploadMissingItem> dataResponses) {
+    public void addItems(List<UploadFoundedItemResponse> dataResponses) {
         mData.clear();
         mData.addAll(dataResponses);
-        mDataDefault = dataResponses;
+        mData = dataResponses;
+        notifyDataSetChanged();
+    }
+
+    public void filterByName(String query){
+        List<UploadFoundedItemResponse> filtered = new ArrayList<>();
+        for (UploadFoundedItemResponse itemResponse : mData){
+            if (itemResponse.getDetail().toLowerCase().contains(query.toLowerCase()) ){
+                filtered.add(itemResponse);
+            }
+        }
+        mData.clear();
+        mData.addAll(filtered);
         notifyDataSetChanged();
     }
 
     public interface Callback {
         void onBlogEmptyViewRetryClick();
+        void onItemLocationListClick(int position);
     }
 
     public class ViewHolder extends BaseViewHolder {
 
         ImageView imageView;
         TextView tvDesc;
+        TextView tvTime;
+        Spinner spinner;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.iv_upload_founded_item_list);
             tvDesc = itemView.findViewById(R.id.tv_desc_upload_founded_item_list);
+            tvTime = itemView.findViewById(R.id.tv_time_founded_item_list);
+            spinner = itemView.findViewById(R.id.sp_category_founded_item_list);
 
         }
 
@@ -112,8 +139,40 @@ public class UploadFoundedItemListAdapter extends RecyclerView.Adapter<BaseViewH
         public void onBind(int position) {
             super.onBind(position);
 
-            itemView.setOnClickListener(v->{
+            UploadFoundedItemResponse item = mData.get(position);
+            Log.d("Debug", mData.toString());
 
+            Log.d(TAG, "onBind: " + mType);
+
+
+//            if (mType.get(position).equals("Aksesoris")){
+//                tvDesc.setText(item.getDetail());
+//            }else if (mType.get(position).equals("Sepatu")){
+//                tvDesc.setText(item.getDetail());
+//            }else if (mType.get(position).equals("Fashion")){
+//                tvDesc.setText(item.getDetail());
+//            }else {
+//                tvDesc.setText(item.getDetail());
+//            }
+            String textDesc = "";
+            if (item.getDetail() != null && item.getItemImage() != null && item.getContact() != null && item.getTime() != null ){
+                if (item.getDetail().length() >= 30){
+                    textDesc = item.getDetail().substring(0, 30) + "...";
+                }else {
+                    textDesc = item.getDetail();
+                }
+                tvDesc.setText(textDesc);
+                tvTime.setText(dateConverter(item.getTime()));
+                //decode base64 string to image
+                final byte[] decodedBytes = Base64.decode(item.getItemImage(), Base64.DEFAULT);
+                Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                imageView.setImageBitmap(decodedImage);
+            }
+
+            itemView.setOnClickListener(v->{
+                if (mCallback != null){
+                    mCallback.onItemLocationListClick(position);
+                }
             });
 
         }

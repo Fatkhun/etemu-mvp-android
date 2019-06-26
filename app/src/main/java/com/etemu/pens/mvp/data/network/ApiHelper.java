@@ -16,6 +16,7 @@
 package com.etemu.pens.mvp.data.network;
 
 import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadFoundedItemResponse;
 import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 
 import java.io.File;
@@ -31,9 +32,13 @@ public interface ApiHelper {
 
     ApiHeader getApiHeader();
 
-    Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String ImageFile);
+    Single<UploadMissingItemResponse> uploadMissingItem(String category, String detail, String contact, String imageFile);
+
+    Single<UploadFoundedItemResponse> uploadFoundedItem(String category, String detail, String contact, String imageFile);
 
     Single<List<CategoryItemResponse>> getCategoryItem();
 
     Single<List<UploadMissingItemResponse>> getUploadMissingItem();
+
+    Single<List<UploadFoundedItemResponse>> getUploadFoundedItem();
 }

@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.uploadfoundeditemlist.UploadFoundedItemListActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_barlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <FrameLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:theme="@style/Toolbar"/>
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-        <View
-            android:id="@+id/toolbar_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_shadow_height"
-            android:layout_marginBottom="@dimen/toolbar_shadow_adjust"
-            android:background="@drawable/toolbar_shadow" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbars"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimaryDark"
+                app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+                android:theme="@style/Toolbar"/>
 
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/sv_founded_item"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="top"/>
+        </FrameLayout>
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/line_layout"
         android:orientation="vertical"
+        android:layout_below="@+id/app_barlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/lightGray">
@@ -65,17 +72,17 @@
                 android:layout_marginRight="15dp"
                 android:background="#FFFFFF">
                 <Spinner
-                    style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                    android:id="@+id/sp_category_founded_item_list"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    >
-                </Spinner>
+                    android:drawSelectorOnTop="true"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_upload_founded_item"
+        android:layout_below="@+id/line_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</LinearLayout>
+</RelativeLayout>

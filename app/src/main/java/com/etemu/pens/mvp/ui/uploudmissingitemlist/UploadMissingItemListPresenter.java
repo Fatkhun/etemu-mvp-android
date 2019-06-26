@@ -40,6 +40,8 @@ public class UploadMissingItemListPresenter<V extends UploadMissingItemListMvpVi
                     }
                     if (dataResponseList != null && dataResponseList.size() != 0 ){
                         getMvpView().updateUploadMissingItemList(dataResponseList);
+                    }else {
+                        getMvpView().showMessage("load failed");
                     }
                     getMvpView().hideLoading();
                     Log.d("Debug",dataResponseList.toString());
@@ -74,7 +76,9 @@ public class UploadMissingItemListPresenter<V extends UploadMissingItemListMvpVi
                         for (int i=0;i < categoryItemResponse.size(); i++){
                             strings.add(categoryItemResponse.get(i).getName());
                         }
+                        getMvpView().setupCategoryList(strings);
                         getMvpView().setupCategoryItem(strings,spinner);
+                        Log.d("TAG", "getCategoryItem: " + strings);
                     }else {
                         getMvpView().showMessage("failed load category");
                     }

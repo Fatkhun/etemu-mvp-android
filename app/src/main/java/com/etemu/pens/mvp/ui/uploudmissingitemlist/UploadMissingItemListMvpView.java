@@ -12,4 +12,5 @@ import java.util.List;
 public interface UploadMissingItemListMvpView extends MvpView {
     void updateUploadMissingItemList(List<UploadMissingItemResponse> uploadMissingItem);
     void setupCategoryItem(List<String> stringList, Spinner spinner);
+    void setupCategoryList(List<String> stringList);
 }

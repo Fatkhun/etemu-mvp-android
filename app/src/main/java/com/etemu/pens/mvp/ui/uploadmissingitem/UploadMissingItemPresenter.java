@@ -63,6 +63,7 @@ public class UploadMissingItemPresenter<V extends UploadMissingItemMvpView> exte
                     }
                     getMvpView().hideLoading();
                     getMvpView().showMessage("success upload");
+                    getMvpView().openBackActivity();
                 }, throwable ->  {
                     if (!isViewAttached()) {
                         return;

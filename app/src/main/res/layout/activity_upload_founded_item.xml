@@ -27,126 +27,147 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/img_brg_temuan"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        />
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:layout_below="@id/img_brg_temuan"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-        <LinearLayout
-            android:id="@+id/linearLayoutLeft"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
-            <Button
-                android:id="@+id/btn_replay"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_replay"
-                android:text="Ulangi"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linearLayoutRight"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
-            <Button
-                android:id="@+id/btn_simpan"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_camera"
-                android:text="Foto"/>
-        </LinearLayout>
-    </LinearLayout>
     <ScrollView
+        android:layout_below="@id/app_barlayout"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_below="@+id/linearLayout1">
+        android:layout_height="wrap_content">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="380dp"
             android:orientation="vertical"
-            android:background="@color/lightGray">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Tambahkan Detail Barang Temuan "
-                android:textAllCaps="true"
-                android:textStyle="bold"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_founded_item"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
             <LinearLayout
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginLeft="30dp"
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.5">
+
+                    <Button
+                        android:id="@+id/btn_replay"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50dp"
+                        android:drawableLeft="@drawable/ic_replay"
+                        android:text="Ulangi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutRight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.5">
+
+                    <Button
+                        android:id="@+id/btn_take_photo_founded_item"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50dp"
+                        android:drawableLeft="@drawable/ic_camera"
+                        android:text="Foto" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightGray"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_kategori"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Pilih Kategori"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Tambahkan Detail Barang Temuan"
+                    android:textAllCaps="true"
                     android:textStyle="bold" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
+
+                <LinearLayout
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#FFFFFF">
-                    <Spinner
-                        style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_kategori_founded_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Pilih Kategori"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        >
-                    </Spinner>
-                </RelativeLayout>
+                        android:layout_marginTop="5dp"
+                        android:background="#FFFFFF"
+                        android:padding="5dp">
 
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Detail dari barang temuan"
-                    android:hint="Masukkan detail dari barang temuan .."
-                    android:textStyle="bold"/>
-                <EditText
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/white"/>
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Kontak yang dapat dihubungi"/>
-                <EditText
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/white"
-                    />
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Simpan"
-                    android:layout_gravity="center_vertical"
-                    />
+                        <Spinner
+                            android:id="@+id/sp_category_founded_item"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawSelectorOnTop="true"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Detail dari barang temuan"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_detail_founded_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="Masukkan detail dari barang temuan .."
+                        android:background="@color/white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Kontak yang dapat dihubungi" />
+
+                    <EditText
+                        android:id="@+id/et_contact_founded_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="Masukkan kontak"
+                        android:background="@color/white" />
+
+                    <Button
+                        android:id="@+id/btn_save_founded_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="10dp"
+                        android:text="Simpan" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

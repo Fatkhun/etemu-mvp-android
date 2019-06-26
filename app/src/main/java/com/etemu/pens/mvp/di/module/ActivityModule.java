@@ -55,6 +55,7 @@ import com.etemu.pens.mvp.utils.rx.AppSchedulerProvider;
 import com.etemu.pens.mvp.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dagger.Module;
 import dagger.Provides;
@@ -70,6 +71,7 @@ public class ActivityModule {
     private AppCompatActivity mActivity;
     Context context;
     Cursor cursor;
+    List<String> type = new ArrayList<>();
 
     public ActivityModule(AppCompatActivity activity) {
         this.mActivity = activity;
@@ -153,7 +155,7 @@ public class ActivityModule {
 
     @Provides
     UploadMissingItemListAdapter provideUploadMissingItemListAdapter(){
-        return new UploadMissingItemListAdapter(new ArrayList<>(), context);
+        return new UploadMissingItemListAdapter(new ArrayList<>(), context, type);
     }
 
     @Provides

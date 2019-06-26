@@ -63,6 +63,9 @@ dependencies {
     // crop image
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
+    // search material design
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
     // font
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
 
@@ -123,9 +126,6 @@ dependencies {
     // code generator for view
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
-
-    // swipe view
-    implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
 
     // logger
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"

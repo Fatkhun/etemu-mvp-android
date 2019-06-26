@@ -38,4 +38,10 @@ public final class ApiEndPoint {
     public static final String ENDPOINT_LIST_MISSING_ITEM = AppConstants.BASE_URL_API
             + "missing/all";
 
+    public static final String ENDPOINT_UPLOAD_FOUNDED_ITEM = AppConstants.BASE_URL_API
+            + "founded/create";
+
+    public static final String ENDPOINT_LIST_FOUNDED_ITEM = AppConstants.BASE_URL_API
+            + "founded/all";
+
 }

@@ -6,10 +6,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,12 +24,14 @@ import android.widget.Toast;
 import com.etemu.pens.mvp.R;
 import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
 import com.etemu.pens.mvp.ui.base.BaseActivity;
+import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.ui.splash.SplashActivity;
 import com.etemu.pens.mvp.ui.splash.SplashMvpPresenter;
 import com.etemu.pens.mvp.ui.splash.SplashMvpView;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -166,6 +170,14 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
                 resultUri = result.getUri();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos); //bm is the bitmap object
+                    byte[] b = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                    //decode base64 string to image
+                    b = Base64.decode(encodedImage, Base64.DEFAULT);
+                    Bitmap decodedImage = BitmapFactory.decodeByteArray(b, 0, b.length);
+                    ivMissingItem.setImageBitmap(decodedImage);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -180,8 +192,8 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
         CropImage.activity(imageUri)
                 .setCropShape(CropImageView.CropShape.RECTANGLE)
                 .setMinCropWindowSize(0,0)
-                .setMinCropResultSize(500,500)
-                .setMaxCropResultSize(2000,2000)
+                .setMinCropResultSize(100,100)
+                .setMaxCropResultSize(1000,1000)
                 .setShowCropOverlay(true)
                 .start(this);
     }
@@ -201,5 +213,12 @@ public class UploadMissingItemActivity extends BaseActivity implements UploadMis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // set adapter
         spinner.setAdapter(adapter);
+    }
+
+    @Override
+    public void openBackActivity() {
+        Intent intent = HomeActivity.getStartIntent(this);
+        startActivity(intent);
+        finish();
     }
 }

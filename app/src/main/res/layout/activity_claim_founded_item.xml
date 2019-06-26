@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/light_gray"
     tools:context=".ui.claimfoundeditem.ClaimFoundedItemActivity">
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,70 +27,79 @@
             android:background="@drawable/toolbar_shadow" />
 
     </android.support.design.widget.AppBarLayout>
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:padding="10dp">
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Detail barang ditemukan"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="5dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kategori Barang"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#FFFFFF">
-            <Spinner
-                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_detail_image_founded"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-            </Spinner>
-        </RelativeLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tempat ditemukannya Barang"
-            android:layout_marginTop="5dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/white"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kontak yang dapat dihubungi"
-            android:layout_marginTop="5dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Klaim Barang"/>
+                android:layout_height="300dp"
+                />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Detail barang ditemukan"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori Barang"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#FFFFFF">
+                    <TextView
+                        android:id="@+id/tv_detail_category_founded_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"/>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tempat ditemukannya Barang"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_desc_founded_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:text="-"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kontak yang dapat dihubungi"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_contact_founded_item"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:text="-"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -21,6 +21,7 @@ import android.content.Context;
 import com.etemu.pens.mvp.data.network.ApiHeader;
 import com.etemu.pens.mvp.data.network.ApiHelper;
 import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadFoundedItemResponse;
 import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.data.prefs.PreferencesHelper;
 import com.etemu.pens.mvp.di.ApplicationContext;
@@ -66,6 +67,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<UploadFoundedItemResponse> uploadFoundedItem(String category, String detail, String contact, String imageFile) {
+        return mApiHelper.uploadFoundedItem(category, detail, contact, imageFile);
+    }
+
+    @Override
     public Single<List<CategoryItemResponse>> getCategoryItem() {
         return mApiHelper.getCategoryItem();
     }
@@ -73,6 +79,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<List<UploadMissingItemResponse>> getUploadMissingItem() {
         return mApiHelper.getUploadMissingItem();
+    }
+
+    @Override
+    public Single<List<UploadFoundedItemResponse>> getUploadFoundedItem() {
+        return mApiHelper.getUploadFoundedItem();
     }
 
     @Override

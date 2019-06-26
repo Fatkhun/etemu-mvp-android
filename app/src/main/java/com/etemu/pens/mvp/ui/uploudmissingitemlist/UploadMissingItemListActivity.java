@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -18,11 +21,13 @@ import com.etemu.pens.mvp.ui.claimmissingitem.ClaimMissingItemActivity;
 import com.etemu.pens.mvp.ui.home.HomeActivity;
 import com.etemu.pens.mvp.ui.home.HomeMvpPresenter;
 import com.etemu.pens.mvp.ui.home.HomeMvpView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.jsoup.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TooManyListenersException;
 
 import javax.inject.Inject;
 
@@ -46,7 +51,15 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     @BindView(R.id.sp_category_item)
     Spinner spCategoryItem;
 
+    @BindView(R.id.sv_missing_item)
+    MaterialSearchView searchView;
+
+    @BindView(R.id.toolbars)
+    Toolbar mToolbar;
+
     List<UploadMissingItemResponse> uploadMissingItemResponses;
+
+    List<String> type = new ArrayList<>();
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, UploadMissingItemListActivity.class);
@@ -69,12 +82,53 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
 
     @Override
     protected void setUp() {
-        mUploadMissingItemListAdapter = new UploadMissingItemListAdapter(new ArrayList<>(), this);
+        mToolbar.setTitle("Detail");
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(mToolbar);
+
+        mUploadMissingItemListAdapter = new UploadMissingItemListAdapter(new ArrayList<>(), this, type);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvUploadMissingItem.setLayoutManager(mLayoutManager);
         rvUploadMissingItem.setItemAnimator(new DefaultItemAnimator());
         rvUploadMissingItem.setAdapter(mUploadMissingItemListAdapter);
         mUploadMissingItemListAdapter.setCallback(this);
+
+        //search
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Do some magic
+                try{
+                    mUploadMissingItemListAdapter.filterByName(query);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try{
+                    mUploadMissingItemListAdapter.filterByName(newText);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                //Do some magic
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //Do some magic
+            }
+        });
 
 
         mPresenter.getUploadMissingItem();
@@ -89,7 +143,7 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
 
     @Override
     public void onBlogEmptyViewRetryClick() {
-
+        mPresenter.getUploadMissingItem();
     }
 
     @Override
@@ -103,7 +157,7 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
     public void updateUploadMissingItemList(List<UploadMissingItemResponse> uploadMissingItem) {
         uploadMissingItemResponses = uploadMissingItem;
         mUploadMissingItemListAdapter.addItems(uploadMissingItem);
-        mUploadMissingItemListAdapter.setCallback(this);
+        mUploadMissingItemListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -114,5 +168,30 @@ public class UploadMissingItemListActivity extends BaseActivity implements Uploa
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // set adapter
         spinner.setAdapter(adapter);
+    }
+
+    @Override
+    public void setupCategoryList(List<String> stringList) {
+        type = stringList;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search_item);
+        searchView.setMenuItem(item);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (searchView.isSearchOpen()) {
+            mPresenter.getUploadMissingItem();
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

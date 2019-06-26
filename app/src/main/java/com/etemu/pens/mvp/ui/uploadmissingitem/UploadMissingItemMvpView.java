@@ -10,4 +10,6 @@ import java.util.List;
 public interface UploadMissingItemMvpView extends MvpView {
 
     void setupCategoryItem(List<String> stringList, Spinner spinner);
+
+    void openBackActivity();
 }

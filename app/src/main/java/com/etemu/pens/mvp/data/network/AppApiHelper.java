@@ -17,6 +17,7 @@ package com.etemu.pens.mvp.data.network;
 
 
 import com.etemu.pens.mvp.data.network.model.CategoryItemResponse;
+import com.etemu.pens.mvp.data.network.model.UploadFoundedItemResponse;
 import com.etemu.pens.mvp.data.network.model.UploadMissingItemResponse;
 import com.etemu.pens.mvp.data.prefs.PreferencesHelper;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
@@ -71,6 +72,22 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
+    public Single<UploadFoundedItemResponse> uploadFoundedItem(String category, String detail, String contact, String imageFile) {
+        Map<String, String> map = new MapBuilder()
+                .add("category", category)
+                .add("detail", detail)
+                .add("contact", contact)
+                .add("itemImage", imageFile)
+                .build();
+
+        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_UPLOAD_FOUNDED_ITEM)
+                .setContentType("application/json")
+                .addApplicationJsonBody(map)
+                .build()
+                .getObjectSingle(UploadFoundedItemResponse.class);
+    }
+
+    @Override
     public Single<List<CategoryItemResponse>> getCategoryItem() {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_CATEGORY_ITEM)
                 .build()
@@ -82,6 +99,13 @@ public class AppApiHelper implements ApiHelper {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_LIST_MISSING_ITEM)
                 .build()
                 .getObjectListSingle(UploadMissingItemResponse.class);
+    }
+
+    @Override
+    public Single<List<UploadFoundedItemResponse>> getUploadFoundedItem() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_LIST_FOUNDED_ITEM)
+                .build()
+                .getObjectListSingle(UploadFoundedItemResponse.class);
     }
 
     private Map<String, String> getHeader(){
